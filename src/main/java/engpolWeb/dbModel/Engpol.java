@@ -6,9 +6,13 @@ import java.io.Serializable;
 @Entity
 @Table(name = "engpol")
 @NamedQueries(value = {
-        @NamedQuery(name = Engpol.FIND_ALL, query = "select e from  engpolWeb.dbModel.Engpol e")
+        @NamedQuery(name = Engpol.FIND_ALL, query = "select e from  Engpol e"),
+        @NamedQuery(name = Engpol.FIND_BY_ENGWORD, query = "select e from Engpol e where e.engWord = :engWord"),
+        @NamedQuery(name = Engpol.FIND_BU_POLWORD, query = "select e from Engpol e where  e.polWord = :polWord")
 })
 public class Engpol implements Serializable {
+    public static final String FIND_BY_ENGWORD = "engpol.fingByEngWord";
+    public static final String FIND_BU_POLWORD = "engpol.fingByPolWord";
     public static final String FIND_ALL = "engpol.findAll";
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -27,39 +31,31 @@ public class Engpol implements Serializable {
     @Column(name = "pol_sentence")
     private String polSentence;
 
-    public Engpol() {
+    private Engpol() {
+    }
+
+    private Engpol(EngpolFactory factory) {
+        this.id = factory.id;
+        this.engWord = factory.engWord;
+        this.polWord = factory.polWord;
+        this.engSentence = factory.engSentence;
+        this.polSentence = factory.polSentence;
     }
 
     public long getId() {
         return id;
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
-
     public String getEngWord() {
         return engWord;
-    }
-
-    public void setEngWord(String engWord) {
-        this.engWord = engWord;
     }
 
     public String getPolWord() {
         return polWord;
     }
 
-    public void setPolWord(String polWord) {
-        this.polWord = polWord;
-    }
-
     public String getEngSentence() {
         return engSentence;
-    }
-
-    public void setEngSentence(String engSentence) {
-        this.engSentence = engSentence;
     }
 
     public String getPolSentence() {
@@ -77,8 +73,41 @@ public class Engpol implements Serializable {
                 '}';
     }
 
-    public void setPolSentence(String polSentence) {
-        this.polSentence = polSentence;
+
+    public static class EngpolFactory {
+        private long id;
+        private String engWord;
+        private String polWord;
+        private String engSentence;
+        private String polSentence;
+
+        public EngpolFactory id(long id) {
+            this.id = id;
+            return this;
+        }
+
+        public EngpolFactory engWord(String engWord) {
+            this.engWord = engWord;
+            return this;
+        }
+
+        public EngpolFactory polWord(String polWord) {
+            this.polWord = polWord;
+            return this;
+        }
+
+        public EngpolFactory engSentence(String engSentence) {
+            this.engSentence = engSentence;
+            return this;
+        }
+
+        public EngpolFactory polSentence(String polSentence) {
+            this.polSentence = polSentence;
+            return this;
+        }
+
+        public Engpol builid() {
+            return new Engpol(this);
+        }
     }
-    //TODO: Add builder
 }

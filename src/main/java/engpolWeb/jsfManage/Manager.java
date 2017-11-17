@@ -14,7 +14,17 @@ import java.util.List;
 @Named
 @RequestScoped
 public class Manager implements Serializable {
-    List<Engpol> engpols;
+    private List<Engpol> engpols;
+
+    public String getFind() {
+        return find;
+    }
+
+    public void setFind(String find) {
+        this.find = find;
+    }
+
+    private String find;
 
     @Inject
     private Logger logger;
