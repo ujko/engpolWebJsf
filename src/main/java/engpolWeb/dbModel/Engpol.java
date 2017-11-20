@@ -1,5 +1,7 @@
 package engpolWeb.dbModel;
 
+import engpolWeb.jsfmodel.EngpolJsf;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -35,7 +37,7 @@ public class Engpol implements Serializable {
     }
 
     private Engpol(EngpolFactory factory) {
-        this.id = factory.id;
+//        this.id = factory.id;
         this.engWord = factory.engWord;
         this.polWord = factory.polWord;
         this.engSentence = factory.engSentence;
@@ -106,7 +108,16 @@ public class Engpol implements Serializable {
             return this;
         }
 
-        public Engpol builid() {
+        public EngpolFactory engpolJsf(EngpolJsf engpolJsf) {
+            this.id = engpolJsf.getId();
+            this.engWord = engpolJsf.getEngWord();
+            this.polWord = engpolJsf.getPolWord();
+            this.engSentence = engpolJsf.getEngSentence();
+            this.polSentence = engpolJsf.getPolSentence();
+            return this;
+        }
+
+        public Engpol build() {
             return new Engpol(this);
         }
     }

@@ -10,8 +10,6 @@
     <link href="css/bootstrap.min.css" type="text/css" rel="stylesheet"/>
     <link href="css/styles.css" type="text/css" rel="stylesheet"/>
     <script type="text/javascript" src="js/jquery-3.2.1.min.js"/>
-
-
 </h:head>
 <h:body>
     <div class="container">
@@ -23,6 +21,7 @@
                     <p:outputPanel>
                         <h:outputText value="Szukaj: "/>
                         <p:inputText id="globalFilter" onkeyup="PF('tblFilter').filter()" style="width: 250px" placeholder="Wpisz coś"/>
+                        <p:commandButton value="Dodaj nowy" action="#{manager.newEngpol}"/>
                     </p:outputPanel>
                 </f:facet>
 
@@ -41,7 +40,6 @@
                 <p:column headerText="Polska sentencja">
                     <h:outputText value="#{engp.polSentence}"/>
                 </p:column>
-
             </p:dataTable>
         </h:form>
     </div>

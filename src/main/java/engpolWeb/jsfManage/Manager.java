@@ -2,23 +2,22 @@ package engpolWeb.jsfManage;
 
 import engpolWeb.dao.EngpolDAO;
 import engpolWeb.dbModel.Engpol;
+import engpolWeb.jsfmodel.EngpolJsf;
 import org.slf4j.Logger;
 
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.RequestScoped;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.List;
-import java.util.stream.Collectors;
 
-@Named
-@RequestScoped
+@Named(value = "manager")
+@ViewScoped
 public class Manager implements Serializable {
     private List<Engpol> engpols;
     private List<Engpol> filteredEngpols;
-    private String find;
-
+    private EngpolJsf engpolJsf = new EngpolJsf();
 
     @Inject
     private Logger logger;
@@ -31,19 +30,22 @@ public class Manager implements Serializable {
     @PostConstruct
     public void postConstruct() {
         engpols = engpolDAO.getAll();
-
     }
 
-    public String getFind() {
-        return find;
+    public String newEngpol() {
+        logger.debug("{}", engpolJsf);
+        return "new.xhtml";
     }
 
-    public void setFind(String find) {
-        this.find = find;
+    public String saveEngpol() {
+        Engpol engpol = new Engpol.EngpolFactory().engpolJsf(engpolJsf).build();
+        logger.debug("Saves Engpol {}", engpol);
+        engpolDAO.save(engpol);
+        return "index.xhtml";
     }
 
     public List<Engpol> getFilteredEngpols() {
-        logger.debug("get: {}",filteredEngpols);
+        logger.debug("get: {}", filteredEngpols);
         return filteredEngpols;
     }
 
@@ -59,5 +61,15 @@ public class Manager implements Serializable {
 
     public void setEngpols(List<Engpol> engpols) {
         this.engpols = engpols;
+    }
+
+    public EngpolJsf getEngpolJsf() {
+        logger.debug("{}", engpolJsf);
+        return engpolJsf;
+    }
+
+    public void setEngpolJsf(EngpolJsf engpolJsf) {
+        logger.debug("{}", engpolJsf);
+        this.engpolJsf = engpolJsf;
     }
 }
