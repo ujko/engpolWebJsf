@@ -10,25 +10,18 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Named
 @RequestScoped
 public class Manager implements Serializable {
     private List<Engpol> engpols;
-
-    public String getFind() {
-        return find;
-    }
-
-    public void setFind(String find) {
-        this.find = find;
-    }
-
+    private List<Engpol> filteredEngpols;
     private String find;
+
 
     @Inject
     private Logger logger;
-
     @Inject
     private EngpolDAO engpolDAO;
 
@@ -41,6 +34,24 @@ public class Manager implements Serializable {
 
     }
 
+    public String getFind() {
+        return find;
+    }
+
+    public void setFind(String find) {
+        this.find = find;
+    }
+
+    public List<Engpol> getFilteredEngpols() {
+        logger.debug("get: {}",filteredEngpols);
+        return filteredEngpols;
+    }
+
+    public void setFilteredEngpols(List<Engpol> filteredEngpols) {
+        logger.debug("set: {}", filteredEngpols);
+        this.filteredEngpols = filteredEngpols;
+    }
+
     public List<Engpol> getEngpols() {
         logger.info("in getEnpols method");
         return engpols;
@@ -48,12 +59,5 @@ public class Manager implements Serializable {
 
     public void setEngpols(List<Engpol> engpols) {
         this.engpols = engpols;
-    }
-
-    public void createData() {
-//         Engpol e = engpolDAO.getById(1l);
-//        List<Engpol> en = engpolDAO.getAll();
-//        logger.info("Engpols: {}", en);
-
     }
 }
