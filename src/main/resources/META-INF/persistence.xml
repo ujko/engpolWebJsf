@@ -5,15 +5,17 @@
 
     <persistence-unit name="engpol">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-        <jta-data-source>java:/OracleEngpol</jta-data-source>
+        <!--<jta-data-source>java:/OracleEngpol</jta-data-source> for Oracle-->
         <properties>
             <!--<property name="javax.persistence.jdbc.driver" value="oracle.jdbc.OracleDriver" />
-            <property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@localhost:1521:xe" />
-            <property name="javax.persistence.jdbc.user" value="engpol" />
-            <property name="javax.persistence.jdbc.password" value="engpol" />-->
-            <property name="hibernate.show_sql" value="true"/>
-            <property name="hibernate.dialect" value="org.hibernate.dialect.Oracle10gDialect" />
-           <!--<property name="hibernate.hbm2ddl.auto" value="create-drop" />-->
+            <property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@localhost:1521:xe" />-->
+           <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
+           <property name="javax.persistence.jdbc.url" value="mysql://mysql:3306/sampledb" />
+           <property name="javax.persistence.jdbc.user" value="userEFS" />
+           <property name="javax.persistence.jdbc.password" value="Bni5waDvhpD6acfT" />
+           <property name="hibernate.show_sql" value="true"/>
+           <property name="hibernate.dialect" value="org.hibernate.dialect.Oracle10gDialect" />
+          <property name="hibernate.hbm2ddl.auto" value="create" />
         </properties>
     </persistence-unit>
 </persistence>
