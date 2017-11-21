@@ -2,6 +2,9 @@
 body {
 	background-color: #ffeeba;
 }
-div {
-	background-color: #ffeeba;
+
+button {
+    margin-left: 10px;
+    margin-right: 10px;
+    width: 200px;
 }

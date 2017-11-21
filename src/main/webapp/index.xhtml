@@ -2,34 +2,33 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui">
 
-<h:head>
-    <title>English - Polish Translator by Ujo</title>
-    <link href="css/bootstrap.min.css" type="text/css" rel="stylesheet"/>
-    <link href="css/styles.css" type="text/css" rel="stylesheet"/>
-    <script type="text/javascript" src="js/jquery-3.2.1.min.js"/>
-</h:head>
-<h:body>
-    <div class="container">
-        <div class="jumbotron">Słownik angielsko - polski</div>
-
+<ui:composition template="template/template.xhtml">
+    <ui:define name="content">
         <h:form>
-            <p:dataTable var="engp" value="#{manager.engpols}" widgetVar="tblFilter" emptyMessage="Brak danych" filteredValue="#{manager.filteredEngpols}">
+            <p:dataTable var="engp" value="#{manager.engpols}" widgetVar="tblFilter" emptyMessage="Brak danych"
+                         filteredValue="#{manager.filteredEngpols}" rows="15" paginator="true"
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,15,20">
+
                 <f:facet name="header">
                     <p:outputPanel>
                         <h:outputText value="Szukaj: "/>
-                        <p:inputText id="globalFilter" onkeyup="PF('tblFilter').filter()" style="width: 250px" placeholder="Wpisz coś"/>
+                        <p:inputText id="globalFilter" onkeyup="PF('tblFilter').filter()" style="width: 250px"
+                                     placeholder="Wpisz coś"/>
                         <p:commandButton value="Dodaj nowy" action="#{manager.newEngpol}"/>
                     </p:outputPanel>
                 </f:facet>
 
-                <p:column filterMatchMode="contains" headerText="Słówko angielskie" filterBy="#{engp.engWord}" filterStyle="display: none" sortBy="#{engp.engWord}">
+                <p:column filterMatchMode="contains" headerText="Słówko angielskie" filterBy="#{engp.engWord}"
+                          filterStyle="display: none" sortBy="#{engp.engWord}">
                     <h:outputText value="#{engp.engWord}"/>
                 </p:column>
 
-                <p:column filterMatchMode="contains" headerText="Słówko polskie" filterBy="#{engp.polWord}" filterStyle="display: none" sortBy="#{engp.polWord}">
+                <p:column filterMatchMode="contains" headerText="Słówko polskie" filterBy="#{engp.polWord}"
+                          filterStyle="display: none" sortBy="#{engp.polWord}">
                     <h:outputText value="#{engp.polWord}"/>
                 </p:column>
 
@@ -42,7 +41,6 @@
                 </p:column>
             </p:dataTable>
         </h:form>
-    </div>
-    <script type="text/javascript" src="js/scripts.js"/>
-</h:body>
+    </ui:define>
+</ui:composition>
 </html>
