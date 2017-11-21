@@ -15,7 +15,7 @@
            <property name="javax.persistence.jdbc.password" value="Bni5waDvhpD6acfT" />
            <property name="hibernate.show_sql" value="true"/>
            <property name="hibernate.dialect" value="org.hibernate.dialect.Oracle10gDialect" />
-          <property name="hibernate.hbm2ddl.auto" value="create" />
+           <property name="hibernate.hbm2ddl.auto" value="create" />
         </properties>
     </persistence-unit>
 </persistence>
