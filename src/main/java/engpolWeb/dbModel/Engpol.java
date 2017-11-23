@@ -3,6 +3,7 @@ package engpolWeb.dbModel;
 import engpolWeb.jsfmodel.EngpolJsf;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 @Entity
@@ -16,6 +17,7 @@ public class Engpol implements Serializable {
     public static final String FIND_BY_ENGWORD = "engpol.fingByEngWord";
     public static final String FIND_BU_POLWORD = "engpol.fingByPolWord";
     public static final String FIND_ALL = "engpol.findAll";
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
@@ -37,7 +39,6 @@ public class Engpol implements Serializable {
     }
 
     private Engpol(EngpolFactory factory) {
-//        this.id = factory.id;
         this.engWord = factory.engWord;
         this.polWord = factory.polWord;
         this.engSentence = factory.engSentence;

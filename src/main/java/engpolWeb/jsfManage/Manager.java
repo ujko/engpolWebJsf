@@ -72,4 +72,9 @@ public class Manager implements Serializable {
         logger.debug("{}", engpolJsf);
         this.engpolJsf = engpolJsf;
     }
+
+    public String setIndexPage() {
+        logger.debug("Return to index.xhtml with no save");
+        return "index.xhtml";
+    }
 }

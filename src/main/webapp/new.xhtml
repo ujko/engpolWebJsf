@@ -3,25 +3,46 @@
         PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:p="http://primefaces.org/ui"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core"
       xml:lang="en" lang="en">
 <ui:composition template="template/template.xhtml">
     <ui:define name="content">
         <div class="container">
             <h:form>
-                <h:panelGrid columns="2">
-                    <p:outputLabel value="Angielskie słowo"/>
-                    <p:inputText value="#{manager.engpolJsf.engWord}" placeholder="Angielskie słowo" styleClass="text-input inp"/>
-                    <p:outputLabel value="Polskie słowo"/>
-                    <p:inputText value="#{manager.engpolJsf.polWord}" placeholder="Polskie słowo" styleClass="text-input inp"/>
-                    <p:outputLabel value="Angielskia sentencja"/>
-                    <p:inputText value="#{manager.engpolJsf.engSentence}" placeholder="Angielskia sentencja" styleClass="text-input inp"/>
-                    <p:outputLabel value="Polska sentencja"/>
-                    <p:inputText value="#{manager.engpolJsf.polSentence}" placeholder="Polska sentencja" styleClass="text-input inp"/>
-                    <p:commandButton value="Powrót" styleClass="btn btn-success" action="index.xhtml"/>
-                    <p:commandButton value="Zapisz" styleClass="btn btn-info" action="#{manager.saveEngpol}"/>
-                </h:panelGrid>
+                <p:panel id="panel" header="Nowe słówko">
+                    <p:messages id="msgs"/>
+                    <h:panelGrid columns="2">
+
+                        <p:outputLabel for="engword" value="Angielskie słowo: "/>
+                        <p:inputText id="engword" value="#{manager.engpolJsf.engWord}" placeholder="Angielskie słowo"
+                                     styleClass="text-input inp" required="true" requiredMessage="Angielskie słowo wymagane">
+                            <f:validateLength minimum="2"/>
+                        </p:inputText>
+
+                        <p:outputLabel for="polword" value="Polskie słowo: "/>
+                        <p:inputText id="polword" value="#{manager.engpolJsf.polWord}" placeholder="Polskie słowo"
+                                     styleClass="text-input inp" required="true" requiredMessage="Polskie słowo wymagane">
+                            <f:validateLength minimum="2"/>
+                        </p:inputText>
+
+                        <p:outputLabel for="engsentence" value="Angielskia sentencja: "/>
+                        <p:inputText id="engsentence" value="#{manager.engpolJsf.engSentence}" placeholder="Angielskia sentencja"
+                                     styleClass="text-input inp" required="true" requiredMessage="Angielskia sentencja wymagana">
+                            <f:validateLength minimum="2"/>
+                        </p:inputText>
+
+                        <p:outputLabel for="polsentence" value="Polska sentencja: "/>
+                        <p:inputText id="polsentence" value="#{manager.engpolJsf.polSentence}" placeholder="Polska sentencja"
+                                     styleClass="text-input inp" required="true" requiredMessage="Polska sentencja wymagana">
+                            <f:validateLength minimum="2"/>
+                        </p:inputText>
+
+                        <h:commandButton value="Zapisz" styleClass="btn btn-success" action="#{manager.saveEngpol}" update="panel"/>
+                        <a href="index.xhtml" class="btn btn-info">Powrót</a>
+                    </h:panelGrid>
+                </p:panel>
             </h:form>
+
         </div>
     </ui:define>
 </ui:composition>

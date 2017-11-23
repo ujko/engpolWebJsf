@@ -4,11 +4,10 @@ body {
 }
 
 button {
-    margin-left: 10px;
-    margin-right: 10px;
+    margin-right: 20px;
     width: 200px;
 }
 
 .inp {
-    width: 500px;
+    width: 700px;
 }
